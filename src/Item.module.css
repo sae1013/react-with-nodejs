@@ -1,0 +1,32 @@
+
+
+.card {
+  margin: 30px;
+  box-shadow: 0px 0px 5px #000;
+  height:100px;
+}
+
+.likeButton {
+  display: inline-block;
+  outline: none;
+  text-decoration: none;
+  background: none;
+  border: none;
+  height:40px;
+  width:40px;
+}
+
+.likeButton > img {
+  width:100%;
+  transition: all ease 0.1s;
+  
+} 
+
+.likeButton > img:hover {
+  transform:  scale(1.2)
+}
+
+/* png 색상  */
+.red {
+  filter:opacity(0.5) drop-shadow(0 0 0 red);
+}
