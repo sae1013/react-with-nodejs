@@ -7,19 +7,34 @@ function ItemList() {
   const [posts, setPosts] = React.useState([]);
   const [userLikeList,setUserLikeList] = React.useState({});
   
-  const updatePosts = (postId,isLike) => {
-    const newPosts = [...posts]
-    if(isLike){ // 좋아요 표시
-      //포스트ID찾아서, 그위치에 새로운 오브젝트 삽입.
-      const existIdx = newPosts.findIndex((post) => post.id == postId);
-      newPosts[existIdx] = {...newPosts[existIdx],isLike:true}
+  const updatePosts = React.useCallback((postId,isLike)=>{
+    setPosts((posts)=>{
+      const newPosts = [...posts]
+      if(isLike){ // 좋아요 표시
+        //포스트ID찾아서, 그위치에 새로운 오브젝트 삽입.
+        const existIdx = newPosts.findIndex((post) => post.id == postId);
+        newPosts[existIdx] = {...newPosts[existIdx],isLike:true}
+  
+      }else{ // 좋아요 해제
+        const existIdx = newPosts.findIndex((post) => post.id == postId);
+        newPosts[existIdx] = {...newPosts[existIdx],isLike:false}
+      }
+      return newPosts
+    })
+  },[])
+  // const updatePosts = (postId,isLike) => {
+  //   const newPosts = [...posts]
+  //   if(isLike){ // 좋아요 표시
+  //     //포스트ID찾아서, 그위치에 새로운 오브젝트 삽입.
+  //     const existIdx = newPosts.findIndex((post) => post.id == postId);
+  //     newPosts[existIdx] = {...newPosts[existIdx],isLike:true}
 
-    }else{ // 좋아요 해제
-      const existIdx = newPosts.findIndex((post) => post.id == postId);
-      newPosts[existIdx] = {...newPosts[existIdx],isLike:false}
-    }
-    setPosts(newPosts);
-  };
+  //   }else{ // 좋아요 해제
+  //     const existIdx = newPosts.findIndex((post) => post.id == postId);
+  //     newPosts[existIdx] = {...newPosts[existIdx],isLike:false}
+  //   }
+  //   setPosts(newPosts);
+  // };
 
   const sendRequest = async () => {
     const response = await axios.all([
