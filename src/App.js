@@ -4,6 +4,7 @@ import React,{useState,useEffect} from 'react';
 import ItemList from './ItemList';
 
 function App() {
+  const loginUser = 'sae1013';
 
   return (
     <div className="App">
